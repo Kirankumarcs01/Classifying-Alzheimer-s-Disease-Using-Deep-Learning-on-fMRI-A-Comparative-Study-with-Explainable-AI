@@ -53,6 +53,63 @@ The repository also includes a data preparation folder with a dataset URL docume
 - `kiran_fusion_aug_26_ver_01.ipynb` — fusion model notebook
 - `kiran_xai_aug_26_ver_02.ipynb` — explainable AI analysis notebook
 
+## Final Results and Graph Outputs
+
+The final analysis notebook contains the key comparative results and generated plots used for interpretation and dissertation presentation.
+
+### Model Comparison Summary
+
+| Rank | Model | Category | Input | Accuracy (mean ± std) | AUC-ROC (mean ± std) |
+|------|-------|----------|-------|----------------------|----------------------|
+| 1 | SVM (Linear) | Classical ML | Static FC | 0.7134 ± 0.0573 | 0.7771 ± 0.0513 |
+| 2 | BiLSTM h128 L1 mean | Temporal DL | Raw BOLD | 0.6931 ± 0.1091 | 0.7417 ± 0.1513 |
+| 3 | SVM (RBF) | Classical ML | Static FC | 0.6715 ± 0.0560 | 0.7405 ± 0.0762 |
+| 4 | Fusion (best) | Novel DL | FC + BOLD | 0.6713 ± 0.0877 | 0.7379 ± 0.0800 |
+| 5 | GCN+Skip | Graph DL | FC Graph | 0.6642 ± 0.0664 | 0.7401 ± 0.0695 |
+| 6 | Random Forest | Classical ML | Static FC | 0.6485 ± 0.0588 | 0.7211 ± 0.0594 |
+
+### Main Graph Outputs Produced by the Analysis
+
+The notebooks generate a set of final figures for model comparison, explainability, and ROI-level interpretation. The main outputs include:
+
+- `all_models_roc.png` — ROC curves for all models
+- `all_models_accuracy.png` — comparative bar chart of model accuracy
+- `all_models_confusion.png` — confusion matrices for the best-performing models
+- `top20_rois_importance.png` — top 20 most discriminative brain regions
+- `all_rois_ranked.png` — full ROI importance distribution
+- Additional explainability and network-level figures generated during XAI analysis
+
+These results are typically saved under the notebook result directory, for example:
+
+```python
+NB_RESULTS = os.path.join(RESULTS_BASE, 'nb05_xai')
+NB_FIGURES = os.path.join(NB_RESULTS, 'figures')
+```
+
+and the generated plots are written to the `figures/` folder within that result directory.
+
+### Key Visualization Highlights
+
+1. ROC Curve Comparison
+   - Compares SVM, Random Forest, GCN, BiLSTM, and Fusion models
+   - Used to assess discriminative power across thresholds
+
+2. Accuracy Bar Chart
+   - Shows overall classification performance for each model
+   - Highlights that SVM Linear is the strongest single model in this study
+
+3. Confusion Matrix Analysis
+   - Displays true/false positive and negative counts
+   - Supports model quality assessment beyond raw accuracy
+
+4. ROI Importance Analysis
+   - Aggregates SVM coefficients to identify the most discriminative brain regions
+   - Used to determine which ROIs contribute most to Alzheimer’s classification
+
+5. Network-Level Analysis
+   - Summarizes importance by functional brain networks
+   - Helps interpret model predictions in a neuroscience context
+
 ## Methods Used
 
 ### 1. Baseline Machine Learning
@@ -133,3 +190,51 @@ Example structure:
 ```python
 BASE = "/content/drive/MyDrive/Kiran_Thesis/ADNI_preprocessed/DataPreparation/colab_package/data"
 RESULTS_BASE = "/content/drive/MyDrive/Kiran_Thesis/ADNI_preprocessed/DataPreparation/colab_package/results"
+```
+
+## Reported Results
+
+Across the notebooks, the following findings were reported:
+
+- SVM Linear: 71.3% accuracy, 0.777 AUC
+- GCN+Skip: 66.4% accuracy, 0.740 AUC
+- BiLSTM models: competitive temporal performance, with reported accuracy around 69.3% depending on architecture and experiment
+- Fusion model: designed to combine spatial and temporal information to evaluate complementary signal sources
+
+These results suggest that simple classical models can still be highly competitive on this task, while graph and temporal models provide complementary information and remain valuable for deeper analysis.
+
+## Key Takeaways
+
+- Functional connectivity alone is highly informative for AD classification
+- Temporal dynamics from raw BOLD signals add useful information
+- Graph-based methods are promising but still behind the stronger baseline in the reported results
+- Fusion methods may improve interpretability and robustness by combining complementary views of the brain
+- Explainable AI is essential in neuroimaging classification, as it helps identify relevant regions contributing to diagnosis
+
+## Challenges and Notes
+
+- The project is implemented as notebooks rather than a modular Python package
+- Data location and preprocessing paths are highly environment-specific
+- Results and training are dependent on the exact dataset split and preprocessing pipeline
+- Some notebook names and folder names suggest active experimentation and iterative model refinement
+
+## Future Directions
+
+Possible extensions include:
+- Standardizing the full pipeline into a reusable Python project structure
+- Adding a proper requirements file and environment setup
+- Packaging preprocessing, training, and evaluation into scripts
+- Comparing more robust cross-validation and external validation settings
+- Integrating stronger explainability methods such as Grad-CAM, integrated gradients, or ROI importance ranking
+
+## License
+
+This repository does not currently show an explicit license file. Please check the repository settings or contact the author if you need to use the code or dataset under a specific licensing arrangement.
+
+## Author
+
+Kirankumar Chikkamankanala Somashekar
+
+## Acknowledgements
+
+This project uses ADNI-derived imaging data and explores several methodological approaches for Alzheimer’s disease classification using deep learning and graph-based brain network analysis.
