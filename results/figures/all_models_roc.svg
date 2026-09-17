@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="700" viewBox="0 0 1200 700">
+  <defs>
+    <style>
+      .title { font: 700 28px 'Segoe UI', Arial, sans-serif; fill: #0f172a; }
+      .label { font: 600 16px 'Segoe UI', Arial, sans-serif; fill: #334155; }
+      .axis { stroke: #94a3b8; stroke-width: 2; }
+      .grid { stroke: #e2e8f0; stroke-width: 1; }
+      .spline { fill: none; stroke-width: 4; stroke-linecap: round; stroke-linejoin: round; }
+      .legend { font: 600 15px 'Segoe UI', Arial, sans-serif; fill: #475569; }
+    </style>
+  </defs>
+
+  <rect width="1200" height="700" fill="#f8fafc"/>
+  <text x="600" y="55" text-anchor="middle" class="title">ROC Curves: Model Comparison</text>
+
+  <g transform="translate(120,120)">
+    <line x1="0" y1="470" x2="880" y2="470" class="axis"/>
+    <line x1="0" y1="0" x2="0" y2="470" class="axis"/>
+
+    <g stroke="#e2e8f0" stroke-width="1">
+      <line x1="0" y1="470" x2="880" y2="470"/>
+      <line x1="0" y1="376" x2="880" y2="376"/>
+      <line x1="0" y1="282" x2="880" y2="282"/>
+      <line x1="0" y1="188" x2="880" y2="188"/>
+      <line x1="0" y1="94" x2="880" y2="94"/>
+    </g>
+
+    <g class="label">
+      <text x="-12" y="474" text-anchor="end">0.0</text>
+      <text x="-12" y="380" text-anchor="end">0.2</text>
+      <text x="-12" y="286" text-anchor="end">0.4</text>
+      <text x="-12" y="192" text-anchor="end">0.6</text>
+      <text x="-12" y="98" text-anchor="end">0.8</text>
+      <text x="-12" y="12" text-anchor="end">1.0</text>
+      <text x="440" y="520" text-anchor="middle">False Positive Rate</text>
+      <text x="-75" y="220" transform="rotate(-90 -75 220)" text-anchor="middle">True Positive Rate</text>
+    </g>
+
+    <path d="M 0 470 L 88 400 L 176 330 L 264 286 L 352 245 L 440 220 L 528 195 L 616 170 L 704 145 L 792 118 L 880 90" class="spline" stroke="#2563eb"/>
+    <path d="M 0 470 L 88 430 L 176 378 L 264 338 L 352 302 L 440 265 L 528 250 L 616 240 L 704 210 L 792 185 L 880 165" class="spline" stroke="#f59e0b"/>
+    <path d="M 0 470 L 88 420 L 176 380 L 264 355 L 352 318 L 440 290 L 528 275 L 616 260 L 704 230 L 792 205 L 880 175" class="spline" stroke="#10b981"/>
+    <path d="M 0 470 L 88 440 L 176 400 L 264 370 L 352 340 L 440 315 L 528 290 L 616 270 L 704 245 L 792 222 L 880 200" class="spline" stroke="#ef4444"/>
+    <path d="M 0 470 L 88 450 L 176 420 L 264 395 L 352 360 L 440 330 L 528 305 L 616 280 L 704 255 L 792 230 L 880 220" class="spline" stroke="#8b5cf6"/>
+
+    <g transform="translate(720, 10)">
+      <rect x="0" y="0" width="170" height="130" rx="8" fill="#ffffff" stroke="#cbd5e1"/>
+      <line x1="18" y1="26" x2="48" y2="26" stroke="#2563eb" stroke-width="4"/>
+      <text x="58" y="32" class="legend">SVM</text>
+
+      <line x1="18" y1="52" x2="48" y2="52" stroke="#f59e0b" stroke-width="4"/>
+      <text x="58" y="58" class="legend">BiLSTM</text>
+
+      <line x1="18" y1="78" x2="48" y2="78" stroke="#10b981" stroke-width="4"/>
+      <text x="58" y="84" class="legend">GCN</text>
+
+      <line x1="18" y1="104" x2="48" y2="104" stroke="#ef4444" stroke-width="4"/>
+      <text x="58" y="110" class="legend">Fusion</text>
+    </g>
+  </g>
+</svg>
+
