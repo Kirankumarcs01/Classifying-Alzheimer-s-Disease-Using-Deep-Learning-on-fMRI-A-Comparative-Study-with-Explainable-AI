@@ -1,7 +1,7 @@
 # Classifying Alzheimer's Disease Using Deep Learning on fMRI:
 # A Comparative Study with Explainable AI
 
-This repository contains a comparative study on classifying Alzheimer’s Disease (AD) from resting-state functional MRI (fMRI) using multiple machine learning and deep learning approaches. The project evaluates classical machine learning, graph-based deep learning, temporal deep learning, and multimodal fusion models.
+This repository contains a comparative study on classifying Alzheimer’s Disease (AD) from resting-state functional MRI (fMRI) using multiple machine learning and deep learning approaches. The project evaluates classical baselines and deep models on the same dataset and uses explainable AI to interpret the most discriminative brain regions.
 
 The study focuses on:
 - Resting-state fMRI connectivity patterns
@@ -16,7 +16,7 @@ The repository is implemented primarily as Google Colab notebooks, with data pre
 ## Project Summary
 
 The project investigates whether deep learning and graph-based models can classify Alzheimer’s Disease more effectively than conventional machine learning methods. The experimental workflow includes:
-- SVM baseline model
+- Feature-based SVM baseline models
 - GCN-based graph model
 - GAT-based graph model
 - BiLSTM model on fMRI time series
@@ -88,6 +88,24 @@ NB_FIGURES = os.path.join(NB_RESULTS, 'figures')
 
 and the generated plots are written to the `figures/` folder within that result directory.
 
+### Result Visualizations
+
+<div align="center">
+  <img src="results/figures/all_models_roc.svg" width="900" alt="ROC curves for all models" />
+</div>
+
+<div align="center">
+  <img src="results/figures/all_models_accuracy.svg" width="900" alt="Accuracy comparison chart for all models" />
+</div>
+
+<div align="center">
+  <img src="results/figures/all_models_confusion.svg" width="900" alt="Confusion matrix for the best-performing models" />
+</div>
+
+<div align="center">
+  <img src="results/figures/top20_rois_importance.svg" width="900" alt="Top 20 most discriminative regions" />
+</div>
+
 ### Key Visualization Highlights
 
 1. ROC Curve Comparison
@@ -143,7 +161,7 @@ A dual-stream fusion model is implemented to combine:
 This is intended to evaluate whether combining connectivity structure and temporal dynamics provides better discriminative power than either stream alone.
 
 ### 5. Explainable AI
-The XAI notebook explores model interpretability by identifying important brain regions or connectivity patterns influencing the classifier decisions. This helps connect the model output with clinically relevant neurobiological patterns.
+The XAI notebook explores model interpretability by identifying important brain regions or connectivity patterns influencing the classifier decisions. This helps connect the model output with clinical and neuroscientific interpretation.
 
 ## Typical Workflow
 
